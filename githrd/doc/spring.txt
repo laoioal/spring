@@ -1,0 +1,39 @@
+## pom.xml 설정
+
+레이븐 4.1.0
+자바 1.8
+스프링 프레임워크 버전 4.3.20
+org.aspectj-version 1.9.1
+org.slf4j-version 1.7.25
+
+<서블릿>
+artifactId javax.servlet-api
+version 3.1.0
+
+artifactId javax.servlet-jsp-api
+version 2.3.1
+
+maver-compiler-plugin 3.6.1
+source / target ${java-version}
+
+
+<라이브러리>
+ojdbc6 - 오라클 접속 드라이버(11.2.0.4)
+spring-jdbc - Spring framework에서 jdbc를 사용(4.3.20) ==> 버전에 ${org.springframework-version}으로 사용 가능
+commons-dbcp - 데이터베이스 커넥션 미리 확보(커넥션 풀) (1.4)
+mybatis - 데이터를 매핑(3.4.6)
+mubatis-spring - mybatis와 spring 연결 프로그램 (1.3.2)
+
+
+
+## wep.xml 설정
+
+version / xsl:schemaLocation 3.1
+
+
+schemaLocation : 태그 하위에 어떤 태그가 들어가야하는지 정의 (구조를 정의해 놓은것)
+: ==> jsp로 보면 el태그에서 prefix
+
+
+파일 생성시 페이지 명령 추가 필요
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
