@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						https://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						https://www.springframework.org/schema/context/spring-context.xsd">
+						
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:annotation-config />
+
+	<bean id="mDao" class="com.githrd.www.dao.MemberDao"/>
+	
+	<bean id="gDao" class="com.githrd.www.dao.GBoardDao"/>
+	
+	<bean id="rDao" class="com.githrd.www.dao.ReBoardDao"/>
+
+	<bean id="page" class="com.githrd.www.util.PageUtil">
+<!-- 		<property name="nowPage" value="1" /> -->
+<!-- 		<property name="pageRow" value="3" />
+		<property name="pageGroup" value="3" /> -->
+	</bean>	
+	
+</beans>

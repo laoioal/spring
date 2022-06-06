@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gSQL">
+	<select id="glist" resultType="gVO">
+		SELECT
+		    rno, gno, id, body, wdate, avatar
+		FROM
+		    (
+		    SELECT
+		        ROWNUM rno, gno, id, body, wdate, avatar
+		    FROM
+		        (
+		            SELECT
+		                gno, id, body, wdate, savename avatar
+		            FROM
+		                member m, guestboard g, avatar a
+		            WHERE
+		                g.isshow = 'Y'
+		                AND mno = writer
+		                AND avt = ano
+		            ORDER BY
+		                wdate DESC
+		        )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<select id="boardCnt" resultType="int">
+		SELECT
+		    COUNT(*) cnt
+		FROM
+		    guestboard g
+		WHERE
+		    g.isshow = 'Y'
+		    AND writer = (SELECT mno FROM member WHERE id = #{id})
+	</select>
+	
+	<select id="boardListCnt" resultType="int">
+		SELECT
+		    COUNT(*) cnt
+		FROM
+		    guestboard
+	</select>
+	
+	<select id="writeInfo" resultType="gVO" parameterType="string">
+		SELECT
+		    mno, savename avatar
+		FROM
+		    member m, avatar a
+		WHERE
+		    avt = ano
+		    AND id = #{id}
+	</select>
+	
+	<select id="gboardProc" parameterType="gVO">
+		INSERT INTO
+		    guestboard(gno, writer, body)
+		VALUES(
+		    (SELECT NVL(MAX(gno) + 1, 1001) FROM guestboard), #{mno}, #{body}
+		)
+	</select>
+</mapper>

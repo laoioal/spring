@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rSQL">
+
+	<select id="reboardList" resultType="gVO">
+		SELECT
+		    rno, bno, upno, id, body, avatar, step, wdate
+		FROM(
+		    SELECT
+		    rownum rno, bno, upno, id, body, avatar, step, wdate
+		FROM
+		    (
+		            SELECT
+		                rbno bno, upno, id, body, savename avatar, (level -1) step, wdate
+		            FROM
+		                reboard r, member m, avatar a
+		            WHERE
+		                rbmno = mno
+		                AND avt = ano
+		                AND r.isshow = 'Y'
+		            START WITH
+		                upno is NULL
+		            CONNECT BY
+		                PRIOR rbno = upno
+		            ORDER SIBLINGS BY
+		                wdate DESC
+		        
+		        )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<select id="reboardCnt" resultType="int">
+		SELECT
+			COUNT(*) cnt
+		FROM
+			reboard
+		WHERE
+			isshow = 'Y'
+	</select>
+	
+	<select id="getIdInfo" resultType="gVO">
+		SELECT
+			mno, ano, savename avatar
+		FROM
+			member m, avatar a
+		WHERE
+			avt = ano
+			AND id = #{id}
+	</select>
+	
+	<insert id="insertReboardcom" parameterType="gVO">
+		INSERT INTO
+		    reboard(rbno, upno, rbmno, body)
+		VALUES(
+		    (SELECT NVL(MAX(RBNO) + 1, 100001) FROM reboard), #{upno}, (SELECT mno FROM member WHERE id = #{id}), #{body}
+		)
+	</insert>
+	
+	<insert id="insertReboard">
+		INSERT INTO
+		    reboard(rbno, rbmno, body)
+		VALUES(
+		    (SELECT NVL(MAX(RBNO) + 1, 100001) FROM reboard), (SELECT mno FROM member WHERE id = #{id}), #{body}
+		)
+	</insert>
+
+</mapper>

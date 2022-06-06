@@ -1,0 +1,174 @@
+### GITHRD Project 요청 설계 ###
+
+
+# main 페이지 보기 요청
+요청내용	:	/www/ , /www/main.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.MainController
+처리함수	:	getMain()
+뷰			:	/WEB-INF/views/main.jsp
+
+--------------------------------------------------------------------------------
+### 회원관련 요청 설계
+# 로그인 폼 보기 요청
+요청내용	:	/www/member/login.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	loginForm()
+뷰			:	/WEB-INF/views/member/login.jsp
+--------------------------------------------------------------------------------
+# 로그인 처리 요청
+요청내용	:	/www/member/loginProc.blp
+파라미터	:	id, pw
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	loginProc()
+뷰			:	redirect ]
+					성공 : /www/
+					실패 : /www/member/login.blp
+--------------------------------------------------------------------------------
+# 로그아웃 처리 요청
+요청내용	:	/www/member/logout.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	logout()
+뷰			:	redirect ]	/www/
+--------------------------------------------------------------------------------
+# 회원가입 폼 보기 요청
+요청내용	:	/www/member/join.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	joinForm()
+뷰			:	/WEB-INF/views/member/join.jsp
+--------------------------------------------------------------------------------
+# 아이디 체크 요청
+요청내용	:	/www/member/idCheck.blp
+파라미터	:	id
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	idCheck()
+뷰			:	json
+--------------------------------------------------------------------------------
+# 회원가입 처리 요청
+요청내용	:	/www/member/joinProc.blp
+파라미터	:	name, id, pw, mail, tel, ano, gen
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	joinProc()
+뷰			:	redirect ]
+					성공 : /www/
+					실패 : /www/member/join.blp
+--------------------------------------------------------------------------------
+# 회원 탈퇴 처리 요청
+요청내용	:	/www/member/delMember.blp
+파라미터	:	id
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	delMember()
+뷰			:	redirect ]
+					성공 : /www/
+					실패 : /www/member/myInfo.blp
+--------------------------------------------------------------------------------
+# 내 정보보기 요청
+요청내용	:	/www/member/myInfo.blp
+파라미터	:	id
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	myInfo()
+뷰			:	/WEB-INF/views/member/memberInfo.jsp
+--------------------------------------------------------------------------------
+# 내 정보 수정 폼보기 요청
+요청내용	:	/www/member/myInfoEdit.blp
+파라미터	:	id
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	myInfoEdit()
+뷰			:	/WEB-INF/views/member/editInfo.jsp
+--------------------------------------------------------------------------------
+# 회원 정보보기 요청
+요청내용	:	/www/member/memberInfo.blp
+파라미터	:	mno
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	memberInfo()
+뷰			:	/WEB-INF/views/member/memberInfo.jsp
+--------------------------------------------------------------------------------
+# 회원 리스트 보기 요청
+요청내용	:	/www/member/memberList.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	memberList()
+뷰			:	/WEB-INF/views/member/memberList.jsp
+--------------------------------------------------------------------------------
+
+
+연습용
+# 회원정보 수정 요청
+요청내용	:	/www/member/myInfoEditProc.blp
+파라미터	:	pw, mail, tel, avt
+컨트롤러	:	com.githrd.www.controller.Member
+처리함수	:	myInfoEditProc()
+뷰			:	redirect ]
+						성공 : /www/member/myInfo.blp
+						실패 : /WEB-INF/views/member/editInfo.jsp
+--------------------------------------------------------------------------------
+
+####방명록 관련 요청설계
+--------------------------------------------------------------------------------
+# 방명록 리스트 보기 요청
+요청내용	:	/www/gboard/gboardList.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.gBoard
+처리함수	:	gBoardList()
+뷰			:	/WEB-INF/views/guestBoard/gBoardList.jsp
+--------------------------------------------------------------------------------
+# 방명록 작성 폼보기 요청
+요청내용	:	/www/gboard/gboardForm.blp
+파라미터	:	mno, avatar
+컨트롤러	:	com.githrd.www.controller.gBoard
+처리함수	:	gBoardForm()
+뷰			:	/WEB-INF/views/guestBoard/gBoardWrite.jsp
+--------------------------------------------------------------------------------
+# 방명록 작성 처리요청 요청
+요청내용	:	/www/gboard/gboardProc.blp
+파라미터	:	mno, body, nowPage
+컨트롤러	:	com.githrd.www.controller.gBoard
+처리함수	:	gBoardPrco()
+뷰			:	redirect ]
+					성공 : /www/gBoard/gBoardList.blp
+					실패 : /www/gboard/gboardForm.blp
+--------------------------------------------------------------------------------
+
+###댓글게시판 관련 요청설계
+--------------------------------------------------------------------------------
+# 댓글게시판 리스트 보기 요청
+요청내용	:	/www/reboard/reboardList.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.ReBoard
+처리함수	:	ReBoardList()
+뷰			:	/WEB-INF/views/reboard/reboardList.jsp
+--------------------------------------------------------------------------------
+# 댓글게시판 댓글작성 폼보기 요청
+요청내용	:	/www/reboard/reboardWrite.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.ReBoard
+처리함수	:	ReBoardWrite()
+뷰			:	/WEB-INF/views/reboard/reboardWrite.jsp
+--------------------------------------------------------------------------------
+# 댓글게시판 글등록 처리요청
+요청내용	:	/www/reboard/reboardWriteProc.blp
+파라미터	:	무
+컨트롤러	:	com.githrd.www.controller.ReBoard
+처리함수	:	ReBoardWriteProc()
+뷰			:	redirect ]
+						성공 : /www/gBoard/gBoardList.blp
+						실패 : /WEB-INF/views/reboard/reboardWrite.jsp
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

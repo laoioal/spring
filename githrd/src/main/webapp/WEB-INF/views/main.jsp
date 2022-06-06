@@ -36,6 +36,7 @@
 <body>
 	<form method="POST" action="" id="frm" name="frm">
 		<input type="hidden" id="id" name="id" value="${SID}">
+		<input type="hidden" id="nowPage" name="nowPage" value="1">
 	</form>
 	<div class="w3-content w3-center mw700">
 		<h1 class="w3-teal w3-padding" style="margin-bottom: 5px;">Whistle Project</h1>
