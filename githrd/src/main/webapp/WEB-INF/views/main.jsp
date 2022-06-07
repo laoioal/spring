@@ -28,6 +28,9 @@
 	.mt10 {
 		margin-top: 30px;
 	}
+	#msgWin{
+		display: block;
+	}
 </style>
 <script type="text/javascript">
 	var sessionId = '${SID}';
@@ -49,10 +52,6 @@
 </c:if>
 				<div class="w3-col" id="btnfr">
 <c:if test="${not empty SID}">
-					<script type="text/javascript">
-						alert('${SID} 님이 로그인했습니다.');
-					</script>
-
 					<div class="w3-col w3-border-bottom pdb3">
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-right mt0" id="obtn">LogOut</span>
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-left mt0" id="ibtn">내정보 보기</span>
@@ -86,24 +85,22 @@
 		</div>
 	</div>
 	
-<%--
-	<div id="map" style="width:500px;height:400px;"></div>
- --%>
+	
+<c:if test="${(not empty SID) and (MSG_CHECK eq 'OK')}">	
+	<div id="msgWin" class="w3-modal">
+		<div class="w3-modal-content w3-animate-top w3-card-4">
+			<header class="w3-container w3-blue"> 
+				<span class="w3-button w3-display-topright" id="msgClose">&times;</span>
+				<h2>알림 메세지</h2>
+			</header>
+			<div class="w3-container">
+				<h3 class="w3-center" id="msg">${SID}님 로그인 하셨습니다.</h3>
+			</div>
+		</div>
+	</div>
+</c:if>	
+	
 </body>
 
-<%--
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6eb43090816459e3bd87a01437e49a6d"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript">
-var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-var options = { //지도를 생성할 때 필요한 기본 옵션
-	center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-	level: 3 //지도의 레벨(확대, 축소 정도)
-};
 
-var map = new kakao.maps.Map(container, options);
-</script>
- --%>
 </html>

@@ -9,6 +9,9 @@ package com.githrd.www.util;
  * 			
  * 			작업이력 ]
  * 				2022/05/17	- 담당자 : 이용현
+ * 								클래스 제작
+ * 				2022/06/07	- 담당자 : 이용현
+ * 								setPage() 추가
  */
 public class PageUtil {
 	// 필요한 변수 선언
@@ -42,6 +45,22 @@ public class PageUtil {
 		setEndPage();
 		setCont();
 	}
+	
+	public void setPage(int nowPage, int totalCount) {
+		setPage(nowPage, totalCount, 3, 3);
+	}
+	public void setPage(int nowPage, int totalPage, int pageRow, int pageGroup) {
+		this.nowPage = nowPage;
+		this.totalCount = totalPage;
+		this.pageRow = pageRow;
+		this.pageGroup = pageGroup;
+		
+		setTotalPage();
+		setStartPage();
+		setEndPage();
+		setCont();
+	}
+	
 
 	// 총 페이지 수 계산하는 함수
 	public void setTotalPage() {

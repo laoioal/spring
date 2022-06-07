@@ -9,7 +9,6 @@ public class FileVO {
 	private long len;
 	private String id, oriname, savename, dir, sdate, stime;
 	private Date wdate;
-	private Time wtime;
 	public int getBno() {
 		return bno;
 	}
@@ -74,7 +73,7 @@ public class FileVO {
 		return sdate;
 	}
 	public void setSdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일");
+		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일 HH24:mm:ss");
 		sdate = form.format(wdate);
 	}
 	public void setSdate(String sdate) {
@@ -82,10 +81,6 @@ public class FileVO {
 	}
 	public String getStime() {
 		return stime;
-	}
-	public void setStime() {
-		SimpleDateFormat form = new SimpleDateFormat("HH24:mm:ss");
-		stime = form.format(wtime);
 	}
 	public void setStime(String stime) {
 		this.stime = stime;
@@ -97,23 +92,13 @@ public class FileVO {
 		this.wdate = wdate;
 		setSdate();
 	}
-	public Time getWtime() {
-		return wtime;
-	}
-	public void setWtime(Time wtime) {
-		this.wtime = wtime;
-		setStime();
-	}
 	@Override
 	public String toString() {
-		return "FileVO [fno=" + fno + ", mno=" + mno + ", rno=" + rno + ", cnt=" + cnt + ", len=" + len + ", oriname="
-				+ oriname + ", savename=" + savename + ", dir=" + dir + ", sdate=" + sdate + ", stime=" + stime
-				+ ", wdate=" + wdate + ", wtime=" + wtime + ", getFno()=" + getFno() + ", getMno()=" + getMno()
-				+ ", getRno()=" + getRno() + ", getCnt()=" + getCnt() + ", getLen()=" + getLen() + ", getOriname()="
-				+ getOriname() + ", getSavename()=" + getSavename() + ", getDir()=" + getDir() + ", getSdate()="
-				+ getSdate() + ", getStime()=" + getStime() + ", getWdate()=" + getWdate() + ", getWtime()="
-				+ getWtime() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "FileVO [bno=" + bno + ", fno=" + fno + ", mno=" + mno + ", rno=" + rno + ", cnt=" + cnt + ", len=" + len
+				+ ", id=" + id + ", oriname=" + oriname + ", savename=" + savename + ", dir=" + dir + ", sdate=" + sdate
+				+ ", stime=" + stime + ", wdate=" + wdate + "]";
 	}
+
+
 	
 }

@@ -5,11 +5,11 @@ import java.util.Date;
 import java.sql.*;
 import java.text.*;
 
-public class GBoardVO {
+public class BoardVO {
 	private int mno, bno, upno, rno, ano, click, cnt, step;
 	private String id, title, body, sdate, stime, avatar;
 	private Date wdate;
-
+	private Time wtime;
 	public int getMno() {
 		return mno;
 	}
@@ -80,7 +80,7 @@ public class GBoardVO {
 		return sdate;
 	}
 	public void setSdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
+		SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd");
 		sdate = form.format(wdate);
 	}
 	public void setSdate(String sdate) {
@@ -88,6 +88,10 @@ public class GBoardVO {
 	}
 	public String getStime() {
 		return stime;
+	}
+	public void setStime() {
+		SimpleDateFormat form = new SimpleDateFormat("HH:mm:ss");
+		stime = form.format(wtime);
 	}
 	public void setStime(String stime) {
 		this.stime = stime;
@@ -105,11 +109,18 @@ public class GBoardVO {
 		this.wdate = wdate;
 		setSdate();
 	}
+	public Time getWtime() {
+		return wtime;
+	}
+	public void setWtime(Time wtime) {
+		this.wtime = wtime;
+		setStime();
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [mno=" + mno + ", bno=" + bno + ", upno=" + upno + ", rno=" + rno + ", ano=" + ano + ", cnt="
 				+ cnt + ", step=" + step + ", id=" + id + ", title=" + title + ", body=" + body + ", sdate=" + sdate
-				+ ", avatar=" + avatar + ", wdate=" + wdate + ", wtime=" + "]";
+				+ ", avatar=" + avatar + ", wdate=" + wdate + ", wtime=" + wtime + "]";
 	}
 	
 }

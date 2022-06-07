@@ -27,6 +27,10 @@ public class MemberDao {
 		return sqlSession.selectList("mSQL.avtList");
 	}
 	
+	public List<MemberVO> getAvtList(String id){
+		return sqlSession.selectList("mSQL.genAvtList", id);
+	}
+	
 	// 회원정보 데이터베이스 추가작업 전담 처리함수
 	public int addMember(MemberVO mVO) {
 		return sqlSession.insert("mSQL.addMember", mVO);
@@ -60,6 +64,11 @@ public class MemberDao {
 	// 회원정보 수정 전담 처리 함수
 	public int upMember(MemberVO mVO) {
 		return sqlSession.update("upMember", mVO);
+	}
+	
+	// 내정보 수정 데이터베이스 작업 전담 처리함수
+	public int editMyInfo(MemberVO mVO) {
+		return sqlSession.update("mSQL.editInfo", mVO);
 	}
 
 }

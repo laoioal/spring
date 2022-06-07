@@ -14,19 +14,50 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.githrd.www.dao.GBoardDao;
 import com.githrd.www.dao.MemberDao;
 import com.githrd.www.util.PageUtil;
+import com.githrd.www.vo.BoardVO;
 import com.githrd.www.vo.GBoardVO;
 import com.githrd.www.vo.MemberVO;
 
 @Controller
-@RequestMapping("/gboard")
+@RequestMapping("/gBoard")
 public class GuestBoard {
 	@Autowired
 	GBoardDao gDao;
+	
 	@Autowired
 	MemberDao mDao;
+	
 	@Autowired
 	PageUtil page;
+
+	@RequestMapping("/gBoardList.blp")
+	public ModelAndView gBoardList(ModelAndView mv, PageUtil page) {
+//		System.out.println("page.nowPage : " + page.getNowPage());
+//		System.out.println("page.nowPage : " + page.getPageRow());
+		
+		
+		// 총 게시글 수 조회
+		int total = gDao.getTotal();
+		page.setPage(page.getNowPage(), total);
+		
+		// 게시글 목록 조회
+		List<BoardVO> list = gDao.getList(page);
+		
+		// 데이터 심고
+		mv.addObject("LIST", list);
+		mv.addObject("PAGE", page);
+
+		
+		// 뷰 부르고				
+		mv.setViewName("gBoard/gBoardList");
+		return mv;
+	}
 	
+	
+	
+	
+	
+	/*
 	@RequestMapping(path="/gboardList.blp", params="nowPage")
 	public ModelAndView gBoardList(ModelAndView mv, HttpSession session, int nowPage) {
 		String id = (String) session.getAttribute("SID");
@@ -88,5 +119,5 @@ public class GuestBoard {
 		
 
 	}
-	
+	*/
 }

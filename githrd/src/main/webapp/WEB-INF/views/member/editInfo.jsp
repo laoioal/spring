@@ -119,5 +119,19 @@
 			<div class="w3-third w3-blue w3-hover-aqua w3-button" id="ebtn">edit</div> 
 		</div>
 	</div>
+
+	<div id="msgWin" class="w3-modal">
+		<div class="w3-modal-content w3-animate-top w3-card-4">
+			<header class="w3-container w3-red"> 
+				<span class="w3-button w3-display-topright" id="msgClose">&times;</span>
+				<h1><b>알 림</b></h1>
+			</header>
+			<div class="w3-container">
+				<h3 class="w3-center" id="msg">변경된 내용이 없습니다.</h3>
+			</div>
+		</div>
+	</div>
+
+	
 </body>
 </html>

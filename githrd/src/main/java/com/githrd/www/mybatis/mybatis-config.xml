@@ -12,6 +12,9 @@
 	<typeAliases>
 		<typeAlias alias="mVO" type="com.githrd.www.vo.MemberVO"/>
 		<typeAlias alias="gVO" type="com.githrd.www.vo.GBoardVO"/>
+		<typeAlias alias="bVO" type="com.githrd.www.vo.BoardVO"/>
+		<typeAlias alias="fVO" type="com.githrd.www.vo.FileVO"/>
+		<typeAlias alias="page" type="com.githrd.www.util.PageUtil"/>
 	</typeAliases>
 	
 	<mappers>
