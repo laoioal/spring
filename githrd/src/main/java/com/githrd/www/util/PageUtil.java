@@ -46,6 +46,9 @@ public class PageUtil {
 		setCont();
 	}
 	
+	public void setPage(int totalCount) {
+		setPage(this.nowPage, totalCount, 3, 3);
+	}
 	public void setPage(int nowPage, int totalCount) {
 		setPage(nowPage, totalCount, 3, 3);
 	}

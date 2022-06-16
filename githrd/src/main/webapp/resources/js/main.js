@@ -54,8 +54,13 @@ $(document).ready(function() {
 	});
 */
 	$('#rbtn').click(function(){
-		$('#frm').attr('action', '/www/reboard/reboardList.blp');
+		$('#frm').attr('action', '/www/reBoard/reBoardList.blp');
 		$('#frm').submit();
+	});
+	$('#sbtn').click(function(){
+		$('#frm').attr('action', '/www/survey/surveyInfo.blp');
+		$('#frm').submit();
+		
 	});
 	
 	

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,10 @@
 							class="w3-col w3-input w3-border w3-round-medium">
 				</div>
 			</div>
+<c:if test="${not empty param.vw}">
+			<input type="hidden" name="nowPage" value="${param.nowPage}">
+			<input type="hidden" name="vw" value="${param.vw}">
+</c:if>
 		</form>
 		<div class="w3-col w3-margin-top w3-card-4">
 			<div class="w3-half w3-button w3-red w3-hover-orange" id="hbtn">Home</div>

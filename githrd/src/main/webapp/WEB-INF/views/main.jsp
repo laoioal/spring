@@ -50,12 +50,18 @@
 					<span class="w3-col m2 w3-button w3-small w3-blue w3-hover-light-blue w3-right" id="lbtn">Login</span>
 				</div>
 </c:if>
+
 				<div class="w3-col" id="btnfr">
 <c:if test="${not empty SID}">
 					<div class="w3-col w3-border-bottom pdb3">
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-right mt0" id="obtn">LogOut</span>
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-left mt0" id="ibtn">내정보 보기</span>
 					</div>
+</c:if>
+<c:if test="${not empty SID and SCOUNT ne 0}">
+				<div class="w3-col">
+					<p class="w3-right-align"><small> * 현재 진행중인 설문중 참여하지 않은 설문이 [ <span class="w3-text-blue">${SCOUNT}</span> ]개 있습니다.</small></p>
+				</div>
 </c:if>
 
 					
@@ -66,13 +72,11 @@
 						<div class="w3-col m3 pdh10">
 							<h5 class="w3-col w3-button w3-pink w3-hover-light-green" id="gbtn">방명록</h5>
 						</div>
+<c:if test="${not empty SID}">						
 						<div class="w3-col m3 pdh10">
 							<h5 class="w3-col w3-button w3-red w3-hover-light-green" id="sbtn">설문조사</h5>
 						</div>
-
-						<div class="w3-col m3 pdh10">
-							<h5 class="w3-col w3-button w3-deep-orange w3-hover-light-green" id="irbtn">댓글쓰기</h5>
-						</div>
+</c:if>
 
 						<div class="w3-col m3 pdh10">
 							<h5 class="w3-col w3-button w3-orange w3-hover-light-green" id="rbtn">댓글게시판</h5>

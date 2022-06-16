@@ -1,4 +1,5 @@
 $(document).ready(function() {
+/*
 	$('#hbtn').click(function() {
 	$(location).attr('href', '/www/');
 	});
@@ -48,6 +49,6 @@ $(document).ready(function() {
 		document.frm.reset();
 	});
 	
-	
+	*/
 	
 });

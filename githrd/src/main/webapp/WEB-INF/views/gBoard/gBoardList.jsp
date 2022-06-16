@@ -50,7 +50,7 @@
 <c:if test="${CNT != 1}">
 		<div class="w3-content mxw650 w3-margin-top" id="div1" style="display: none;">
 			
-			<form method="POST" action="/www/gboard/gboardForm.blp" name="frm1" id="frm1" class="w3-col w3-round-large w3-card-4 w3-margin-bottom w3-padding mgb20">
+			<form method="POST" action="" name="frm1" id="frm1" class="w3-col w3-round-large w3-card-4 w3-margin-bottom w3-padding mgb20">
 				<input type="hidden" name="mno" value="${DATA.mno}">
 				<div class="w3-col box120 pdAll10 w3-border-right w3-border-deep-orange">
 					<img src="/www/img/avatar/${DATA.avatar}" class="inblock avtBox100 w3-border w3-border-grey">
@@ -124,6 +124,7 @@
 	
 	<!-- 데이터 전송용 form 태그 -->
 	<form method="POST" action="/www/gBoard/gBoardList.blp" id="frm" name="frm">
+		<input type="hidden" id="vw" name="vw">
 		<input type="hidden" id="nowPage" name="nowPage" value="${PAGE.nowPage}">
 	</form>
 </body>

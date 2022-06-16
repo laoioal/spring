@@ -41,3 +41,29 @@ schemaLocation : 태그 하위에 어떤 태그가 들어가야하는지 정의 
 
 파일 생성시 페이지 명령 추가 필요
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
+트랜잭션 처리 등록
+1) root-context.xml
+	
+	xmlns:tx="http://www.springframework.org/schema/tx"
+
+	http://www.springframework.org/schema/tx
+	https://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+	
+	<tx:annotation-driven/>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+등록
+
+2) servlet-context.xml
+	
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	
+	http://www.springframework.org/schema/tx
+	https://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+등록
+
+

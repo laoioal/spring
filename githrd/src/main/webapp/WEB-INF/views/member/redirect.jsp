@@ -15,6 +15,9 @@
 </head>
 <body>
 	<form method="POST" action="${VIEW}" id="frm" name="frm">
+<c:if test="${not empty NOWPAGE}">
+		<input type="hidden" name="nowPage" value="${NOWPAGE}">
+</c:if>
 <c:if test="${not empty SID}">
 		<input type="hidden" name="id" id="id" value="${SID}">
 </c:if>

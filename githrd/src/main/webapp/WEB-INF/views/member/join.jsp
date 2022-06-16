@@ -123,6 +123,10 @@
 				 		</div>
 				</div>
 			</div>
+<c:if test="${not empty param.vw}">
+			<input type="hidden" name="vw" value="${param.vw}">
+			<input type="hidden" name="nowPage" value="${param.nowPage}">
+</c:if>
 		</form>
 		
 		<!-- 버튼 태그 -->

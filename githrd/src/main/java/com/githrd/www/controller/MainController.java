@@ -2,17 +2,32 @@ package com.githrd.www.controller;
 
 import java.util.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.githrd.www.dao.*;
+import com.githrd.www.vo.*;
 
 @Controller
 public class MainController {
+	@Autowired
+	SurveyDao sDao;
 	
 	@RequestMapping({"/", "/main.blp"})
-	public String getMain() {
-		return "main";
+	public ModelAndView getMain(SurveyVO sVO, HttpSession session, ModelAndView mv) {
+		String sid = (String) session.getAttribute("SID");
+		if(sid != null) {
+			sVO.setId(sid);
+			
+			int cnt = sDao.getCount(sVO);
+			mv.addObject("SCOUNT", cnt);
+		}
+		mv.setViewName("main");
+		return mv;
 	}
 	
 	@RequestMapping("/mainMsgCheck.blp")

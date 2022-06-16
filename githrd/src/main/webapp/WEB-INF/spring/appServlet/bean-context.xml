@@ -16,11 +16,14 @@
 	<bean id="gDao" class="com.githrd.www.dao.GBoardDao"/>
 	
 	<bean id="rDao" class="com.githrd.www.dao.ReBoardDao"/>
+	
+	<bean id="sDao" class="com.githrd.www.dao.SurveyDao"/>
 
-	<bean id="page" class="com.githrd.www.util.PageUtil">
+	<bean id="page" class="com.githrd.www.util.PageUtil" />
+	
+	<bean id="sSrvc" class="com.githrd.www.service.SurveyService" />
 <!-- 		<property name="nowPage" value="1" /> -->
 <!-- 		<property name="pageRow" value="3" />
 		<property name="pageGroup" value="3" /> -->
-	</bean>	
 	
 </beans>

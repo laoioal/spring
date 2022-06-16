@@ -10,10 +10,53 @@
 		</layout>
 	</appender>
 	
+	<!-- file appender -->
+	<appender name="file" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.base}/src/main/resources/log/log.log" /><!-- value에는 경로를 쓴다. -->
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p [ %d]: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Member Appender -->
+	<appender name="memberAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.base}/src/main/resources/log/member.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p - %d{yyyy/MM/dd} : %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 설문조사 로그 어팬더 -->
+	<appender name="surveyLog" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.base}/src/main/resources/log/survey.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p - %d{yyyy/MM/dd} : %m%n" />
+		</layout>
+	</appender>
+	
 	<!-- Application Loggers -->
 	<logger name="com.githrd.www">
 		<level value="info" />
+		<appender-ref ref="file"/>
 	</logger>
+	
+	<logger name="surveyLog">
+		<level value="info" />
+		<appender-ref ref="surveyLog" />
+	</logger>
+	
+	<logger name="memberLog">
+		<level value="info" />
+		<appender-ref ref="memberAppender" />
+	</logger>
+	
+	<!-- Application Loggers -->
+	<!-- <logger name="com.githrd.www">
+		<level value="info" />
+	</logger> -->
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">

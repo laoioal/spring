@@ -15,9 +15,16 @@ $(document).ready(function(){
 		$(location).attr('href', '/www/member/login.blp');
 	});
 	$('#obtn').click(function(){
-		$(location).attr('href', '/www/member/logout.blp');
+		$('#frm').attr('action', '/www/member/logout.blp');
+		$('#vw').val('/www/gBoard/gBoardList.blp');
+		$('#frm').submit();
+		
 	});
+	
+	
+	
 	$('#wbtn').click(function(){
+		$('#frm1').attr('action', '/www/gBoard/gBoardWrite.blp');
 		$('#frm1').submit();
 	});
 	$('.pbtn').click(function(){
@@ -26,7 +33,14 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	$('#wbtn1').click(function(){
-		
 		$('#frm1').submit();
+	});
+	
+	$('#addbtn').click(function(){
+		var str = $('#body').val();
+		if(!str) {
+			return;
+		}
+		$('#frm').submit();
 	});
 });

@@ -4,19 +4,23 @@ import java.util.*;
 
 import javax.servlet.http.*;
 
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.servlet.view.*;
 
-import com.githrd.www.dao.GBoardDao;
-import com.githrd.www.dao.MemberDao;
-import com.githrd.www.vo.MemberVO;
+import com.githrd.www.dao.*;
+import com.githrd.www.vo.*;
 
 @Controller
 @RequestMapping("/member")
 public class Member {
+	
+	private static final Logger memberLog = LoggerFactory.getLogger(Member.class); // 4. 
+	private static final Logger membLog = LoggerFactory.getLogger("memberLog"); // 4. 
+	
 	@Autowired
 	MemberDao mDao;
 	
@@ -24,7 +28,12 @@ public class Member {
 	GBoardDao gDao;
 	
 	@RequestMapping("/login.blp")
-	public ModelAndView loginForm(ModelAndView mv, HttpSession session) {
+	public ModelAndView loginForm(ModelAndView mv, HttpSession session) {	
+		mv.setViewName("member/login");
+		return mv;
+	}
+	@RequestMapping(path="/login.blp", params= {"vw", "nowPage"})
+	public ModelAndView loginForm(ModelAndView mv, HttpSession session, String nowPage, String vw) {		
 		mv.setViewName("member/login");
 		return mv;
 	}
@@ -42,23 +51,45 @@ public class Member {
 //		System.out.println("************** pw : " + pw);
 //		System.out.println("************** mVO.id : " + mVO.getId());
 //		System.out.println("************** mVO.pw : " + mVO.getPw());
-		
+
+
 		int cnt = mDao.getLogin(mVO);
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
+			// 로그처리
+			membLog.info(mVO.getId() + " 님이 로그인 했습니다.");
+			
 			session.setAttribute("MSG_CHECK", "OK");
-			//***********************여기 다시보기
 			int count = gDao.getMyCount(mVO.getId());
-			//session.setAttribute("CNT", count);
+			session.setAttribute("CNT", count);
 			
 			if(count == 0) {
 				rv.setUrl("/www/gBoard/gBoardList.blp");
 			} else {
 				rv.setUrl("/www/main.blp");
 			}
-
 		} else {
 			rv.setUrl("/www/member/login.blp");
+		}
+		mv.setView(rv);
+		
+		return mv;
+	}
+	
+	// 댓글게시판에서 로그인 처리를 요청하는 처리함수
+	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw", "vw", "nowPage"})
+	public ModelAndView loginProc(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv, String nowPage, String vw) {		
+		
+		int cnt = mDao.getLogin(mVO);
+		if(cnt == 1) {
+			session.setAttribute("SID", mVO.getId());	// 로그인 처리
+			session.setAttribute("MSG_CHECK", "OK");
+			int count = gDao.getMyCount(mVO.getId());
+			session.setAttribute("CNT", count);
+			
+			rv.setUrl(vw + "?nowPage=" + nowPage);	// 리다이렉트
+		} else {
+			rv.setUrl("/www/member/login.blp?vw=" + vw + "&nowPage=" + nowPage);
 		}
 		mv.setView(rv);
 		
@@ -117,10 +148,26 @@ public class Member {
 	*/
 	
 	@RequestMapping("/logout.blp")
-	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv, String vw, String nowPage) {
+		String id = (String) session.getAttribute("SID");
+		// 로그처리
+		membLog.info(id + " 님이 로그아웃 했습니다.");
 		session.removeAttribute("SID");
-		rv.setUrl("/www/");
-		mv.setView(rv);
+		
+		if(vw == null) {
+			
+			vw = "/www/";
+			
+		}
+		
+		if(nowPage != null) {
+			mv.addObject("NOWPAGE", nowPage);
+		}
+		
+		mv.addObject("VIEW", vw);
+		
+		mv.setViewName("member/redirect");
+		
 		return mv;
 	}
 	
@@ -154,6 +201,7 @@ public class Member {
 		mv.setViewName("member/join");
 		return mv;
 	}
+
 	/*
 	public void joinForm() {
 		String view = "member/join";
@@ -172,6 +220,31 @@ public class Member {
 			// 성공한 경우
 			session.setAttribute("SID", mVO.getId());
 			rv.setUrl("/www/");
+		} else {
+			rv.setUrl("/www/member/join.blp");
+		}
+		
+		mv.setView(rv);
+		
+		return mv;
+	}
+	
+	@RequestMapping(path="/joinProc.blp", method=RequestMethod.POST, params={"vw", "nowPage"})
+	public ModelAndView joinProc(MemberVO mVO, ModelAndView mv, 
+			RedirectView rv, HttpSession session, String vw, String nowPage) {
+		int cnt = mDao.addMember(mVO);
+		if(cnt == 1) {
+			// 성공한 경우
+			session.setAttribute("SID", mVO.getId());
+			session.setAttribute("MSG_CHECK", "OK");
+			int count = gDao.getMyCount(mVO.getId());
+			session.setAttribute("CNT", count);
+			
+			if(count == 0) {
+				rv.setUrl("/www/gBoard/gBoardList.blp");
+			} else {
+				rv.setUrl("/www/main.blp");
+			}
 		} else {
 			rv.setUrl("/www/member/join.blp");
 		}
