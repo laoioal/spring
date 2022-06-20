@@ -23,6 +23,7 @@
 		<mapper resource="com/githrd/www/sql/GBoardSQL.xml"/>
 		<mapper resource="com/githrd/www/sql/ReBoardSQL.xml"/>
 		<mapper resource="com/githrd/www/sql/SurveySQL.xml"/>
+		<mapper resource="com/githrd/www/sql/BoardSQL.xml"/>
 	</mappers>
 	
 

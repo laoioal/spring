@@ -63,6 +63,10 @@ $(document).ready(function() {
 		
 	});
 	
+	$('#fbtn').click(function() {
+		$(location).attr('href', '/www/board/boardList.blp');
+	});
+	
 	
 	
 });
