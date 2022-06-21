@@ -32,6 +32,10 @@ public class BoardService {
 		
 		fVO.setDir("/www/upload/");
 		
+		// 파일 크기
+		long len = file.getSize();
+		fVO.setLen(len);
+		
 		// 파일의 원이름을 꺼내오고
 		String oldName = file.getOriginalFilename();
 		if(oldName == null) {
