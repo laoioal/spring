@@ -233,6 +233,13 @@
 처리함수	:	boardDetail()
 뷰			:	/WEB-INF/views/board/boardDetail.jsp
 --------------------------------------------------------------------------------
+# 게시판 게시글 폼보기 요청
+요청내용	:	/www/board/boardWrite.blp
+파라미터	:	nowPage
+컨트롤러	:	com.githrd.www.controller.Board
+처리함수	:	boardWrite()
+뷰			:	/WEB-INF/views/board/boardWrite.jsp
+--------------------------------------------------------------------------------
 
 
 -- 자습

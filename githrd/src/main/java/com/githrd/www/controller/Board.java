@@ -65,5 +65,12 @@ public class Board {
 		mv.setViewName("board/boardDetail");
 		return mv;
 	}
+	
+	// 게시판 글쓰기 폼보기요청 처리함수
+	@RequestMapping("/boardWrite.blp")
+	public ModelAndView boardWrite(ModelAndView mv) {
+		mv.setViewName("board/boardWrite");
+		return mv;
+	}
 
 }
