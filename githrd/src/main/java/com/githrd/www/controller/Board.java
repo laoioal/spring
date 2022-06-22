@@ -76,7 +76,7 @@ public class Board {
 		mv.setViewName("board/boardWrite");
 		return mv;
 	}
-<<<<<<< HEAD
+
 
 	
 	// 게시글 등록 요청 처리함수
@@ -95,7 +95,5 @@ public class Board {
 		mv.addObject("VIEW", view);
 		return mv;
 	}
-=======
->>>>>>> refs/remotes/origin/master
 
 }
