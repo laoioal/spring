@@ -49,6 +49,7 @@ $(document).ready(function(){
 		$('#frm').attr('action', '/www/board/boardList.blp');
 		$('#frm').submit();
 	});
+	
 	$('#filebox').on('change', '.upfile', function(evt){
 		var str = $(this).val();
 		if(!str) {
