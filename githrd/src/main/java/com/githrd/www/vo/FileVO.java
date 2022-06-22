@@ -1,6 +1,5 @@
 package com.githrd.www.vo;
 
-import java.sql.Time;
 import java.util.Date;
 import java.text.*;
 

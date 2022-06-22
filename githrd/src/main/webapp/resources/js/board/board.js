@@ -8,7 +8,9 @@ $(document).ready(function(){
 	});
 	
 	$('#lbtn').click(function(){
-		$(location).attr('href', '/www/member/login.blp');
+		$('#vw').val('/www/board/boardList.blp');
+		$('#frm').attr('action', '/www/member/login.blp');
+		$('#frm').submit();
 	});
 	
 	$('#jbtn').click(function(){
@@ -33,4 +35,18 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
+	$('#wbtn').click(function(){
+		$('#frm').attr('action', '/www/board/boardWrite.blp');
+		$('#frm').submit();
+	});
+	
+	// 리셋버튼 클릭이벤트
+	$('#rbtn').click(function(){
+		document.frm.reset();
+	});
+	
+	$('#listbtn').click(function() {
+		$('#frm').attr('action', '/www/board/boardList.blp');
+		$('#frm').submit();
+	});
 });
