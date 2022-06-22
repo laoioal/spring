@@ -241,6 +241,7 @@
 뷰			:	/WEB-INF/views/board/boardWrite.jsp
 --------------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 # 게시판 게시글 등록처리 요청
 요청내용	:	/www/board/boardWriteProc.blp
 파라미터	:	nowPage, id, title, body[, file]
@@ -248,6 +249,8 @@
 처리함수	:	boardWriteProc()
 뷰			:	/WEB-INF/views/board/boardWrite.jsp
 --------------------------------------------------------------------------------
+=======
+>>>>>>> refs/remotes/origin/master
 =======
 >>>>>>> refs/remotes/origin/master
 

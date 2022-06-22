@@ -49,4 +49,13 @@ $(document).ready(function(){
 		$('#frm').attr('action', '/www/board/boardList.blp');
 		$('#frm').submit();
 	});
+	$('#filebox').on('change', '.upfile', function(){
+		var str = $(this).val();
+		if(!str) {
+			$(this).remove();
+			return;
+		}
+		$('#filebox').append('<input type="file" name="file" class="w3-input w3-border w3-margin-bottom upfile">');
+	$('#previewbox').css('display', 'block');
+	});
 });
