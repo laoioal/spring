@@ -4,7 +4,10 @@ $(document).ready(function(){
 	});
 	
 	$('#obtn').click(function(){
-		$(location).attr('href', '/www/member/logout.blp');
+//		$(location).attr('href', '/www/member/logout.blp');
+		$('#vw').val('/www/board/boardList.blp');
+		$('#frm').attr('action', '/www/member/logout.blp');
+		$('#frm').submit();
 	});
 	
 	$('#lbtn').click(function(){
