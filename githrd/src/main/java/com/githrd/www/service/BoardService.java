@@ -137,15 +137,38 @@ public class BoardService {
 		// 게시판 테이블에 데이터 입력하고
 		bDao.addBoard(bVO);
 		// 파일정보테이블에 파일정보들 입력하고(반복)
-		ArrayList<FileVO> list = uploadProc(bVO.getFile());
-		// bno를 꺼내서 FileVO들에 채워주고
-		for(FileVO f : list) {
-			f.setBno(bVO.getBno());
-		}
-		
-		// 데이터 입력작업을 파일 갯수만큼 반복해준다.\
-		for(FileVO f : list) {
-			bDao.addFile(f);
+		if(bVO.getFile() != null) {
+			ArrayList<FileVO> list = uploadProc(bVO.getFile());
+			// bno를 꺼내서 FileVO들에 채워주고
+			for(FileVO f : list) {
+				f.setBno(bVO.getBno());
+			}
+			
+			// 데이터 입력작업을 파일 갯수만큼 반복해준다.\
+			for(FileVO f : list) {
+				bDao.addFile(f);
+			}
 		}
 	}
+	
+	@Transactional
+	// 게시글 수정 데이터베이스 작업 처리함수
+	public void editBoard(BoardVO bVO) {
+		if(bVO.getTitle() != null || bVO.getBody() != null) {
+			bDao.editBoard(bVO);
+		}
+		// 파일정보테이블에 파일정보들 입력하고(반복)
+		if(bVO.getFile() != null) {
+			ArrayList<FileVO> list = uploadProc(bVO.getFile());
+			// bno를 꺼내서 FileVO들에 채워주고
+			for(FileVO f : list) {
+				f.setBno(bVO.getBno());
+			}
+			// 데이터 입력작업을 파일 갯수만큼 반복해준다.\
+			for(FileVO f : list) {
+				bDao.addFile(f);
+			}
+		}
+	}
+	
 }

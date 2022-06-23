@@ -29,6 +29,7 @@
 		                        board, fileinfo
 		                    WHERE
 		                        bno = fbno(+)
+		                        AND fileinfo.isshow = 'Y'
 		                    GROUP BY
 		                        bno
 		                )
@@ -59,7 +60,7 @@
 	<!-- 글번호로 첨부파일 리스트 조회 질의명령 -->
 	<select id="fileList" resultType="fVO" parameterType="int">
 		SELECT
-		    savename, dir
+		    fno, savename, dir
 		FROM
 		    fileinfo
 		WHERE
@@ -94,4 +95,41 @@
 		    #{fno}, #{bno}, #{oriname}, #{savename}, #{dir}, #{len}
 		)
 	</insert>
+	
+	<!-- 첨부파일 파일삭제 처리 질의명령 -->
+	<update id="delFile" parameterType="int">
+		update
+			fileinfo
+		SET
+			isshow = 'N'
+		WHERE
+			fno = #{fno}
+	</update>
+	
+	<!-- 게시글 수정 질의명령 -->
+	<update id="editBoard" parameterType="bVO">
+		UPDATE
+			board
+		<set>
+			<if test="title neq null">
+				title = #{title},
+			</if>
+			<if test="body neq null">
+				body = #{body},
+			</if>
+		</set>
+		WHERE
+			bno = #{bno}
+	</update>
+	
+	<!-- 게시글 삭제 질의명령 -->
+	<update id="delBoard" parameterType="int">
+		UPDATE
+			board
+		SET
+			isshow = 'N'
+		WHERE
+			bno = #{bno}
+	</update>
+	
 </mapper>

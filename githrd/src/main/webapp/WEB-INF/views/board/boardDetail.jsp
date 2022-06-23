@@ -23,6 +23,10 @@
 </style>
 </head>
 <body>
+	<form method="POST" action="/www/board/boardList.blp" id="frm" name="frm">
+		<input type="hidden" name="nowPage" value="${param.nowPage}">
+		<input type="hidden" name="bno" value="${DATA.bno}">
+	</form>
 	<div class="w3-content mxw700">
 		<h1 class="w3-blue w3-padding w3-center w3-card-4">게시글 상세보기</h1>
 		<div class="w3-col w3-card-4 frmpadding">
@@ -54,7 +58,7 @@
 		<c:forEach var="data" items="${LIST}">
 			<c:if test="${not empty data.savename}">
 					<div class="inblock picbox">
-						<img class="pic" src="/www${data.dir}/${data.savename}"> 
+						<img class="pic" src="${data.dir}/${data.savename}"> 
 					</div>
 			</c:if>
 		</c:forEach>
@@ -64,15 +68,17 @@
 		</div>
 		
 		<div class="w3-col w3-margin-top w3-card-4">
-			<div class="w3-third w3-button w3-green" id="listbtn">리스트</div>
-			<div class="w3-third w3-button w3-blue" id="rbtn">리셋</div>
-			<div class="w3-third w3-button w3-deep-orange" id="edit">글수정</div>
+	<c:if test="${SID eq DATA.id}">
+			<div class="w3-quarter w3-button w3-green" id="hbtn">home</div>
+			<div class="w3-quarter w3-button w3-blue" id="listbtn">리스트</div>
+			<div class="w3-quarter w3-button w3-deep-orange" id="edit">글수정</div>
+			<div class="w3-quarter w3-button w3-deep-red" id="dbtn">삭제</div>
+	</c:if>
+	<c:if test="${SID ne DATA.id}">
+			<div class="w3-half w3-button w3-green" id="hbtn">home</div>
+			<div class="w3-half w3-button w3-blue" id="listbtn">리스트</div>
+	</c:if>
 		</div>
 	</div>
-	
-	<form method="POST" action="/whistle/board/boardList.blp" id="pageFrm" name="pageFrm">
-		<input type="hidden" name="nowPage" value="${NOWPAGE}">
-<%-- 		<input type="hidden" name="nowPage" value="${param.nowPage}"> --%>
-	</form>
 </body>
 </html>
