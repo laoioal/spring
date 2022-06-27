@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class MemberVO {
 	private int mno, ano, cnt;
-	private String id, name, pw, mail, tel, sdate, savename, gen;
+	private String id, name, pw, mail, tel, sdate, savename, gen, result;
 	private Date jdate;
 	public int getMno() {
 		return mno;
@@ -76,6 +76,12 @@ public class MemberVO {
 	}
 	public void setSavename(String savename) {
 		this.savename = savename;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 	public Date getJdate() {
 		return jdate;

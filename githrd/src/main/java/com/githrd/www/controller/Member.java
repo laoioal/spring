@@ -45,7 +45,7 @@ public class Member {
 	*/
 	
 	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw"})
-	public ModelAndView loginProc(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv) {
+	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv) {
 //		System.out.println("### 일반 사용자");
 //		System.out.println("************** id : " + id);
 //		System.out.println("************** pw : " + pw);
@@ -54,10 +54,11 @@ public class Member {
 
 
 		int cnt = mDao.getLogin(mVO);
+		mVO.setCnt(cnt);
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
 			// 로그처리
-			membLog.info(mVO.getId() + " 님이 로그인 했습니다.");
+//			membLog.info(mVO.getId() + " 님이 로그인 했습니다.");
 			
 			session.setAttribute("MSG_CHECK", "OK");
 			int count = gDao.getMyCount(mVO.getId());
@@ -78,7 +79,7 @@ public class Member {
 	
 	// 댓글게시판에서 로그인 처리를 요청하는 처리함수
 	@RequestMapping(path="/loginProc.blp", method=RequestMethod.POST, params={"id", "pw", "vw", "nowPage"})
-	public ModelAndView loginProc(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv, String nowPage, String vw) {		
+	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv, String nowPage, String vw) {		
 		
 		int cnt = mDao.getLogin(mVO);
 		if(cnt == 1) {
@@ -117,7 +118,7 @@ public class Member {
 	*/
 	
 	@RequestMapping(path="/loginProc.blp", params="id=admin")
-	public ModelAndView adminLogin(MemberVO mVO, HttpSession session, ModelAndView mv, RedirectView rv) {
+	public ModelAndView adminLogin(ModelAndView mv, MemberVO mVO, HttpSession session, RedirectView rv) {
 //		System.out.println("### 관리자");
 		
 		int cnt = mDao.getLogin(mVO);
@@ -148,16 +149,19 @@ public class Member {
 	*/
 	
 	@RequestMapping("/logout.blp")
-	public ModelAndView logout(ModelAndView mv, HttpSession session, RedirectView rv, String vw, String nowPage) {
-		String id = (String) session.getAttribute("SID");
-		// 로그처리
-		membLog.info(id + " 님이 로그아웃 했습니다.");
+	public ModelAndView logout(ModelAndView mv, HttpSession session, MemberVO mVO, RedirectView rv, String vw, String nowPage) {
 		session.removeAttribute("SID");
 		
+//		String id = (String) session.getAttribute("SID");
+		// 로그처리
+//		membLog.info(id + " 님이 로그아웃 했습니다.");
+		
+		mVO.setResult("OK");
+		
+		session.setAttribute("RESULT", "OK");
+		
 		if(vw == null) {
-			
 			vw = "/www/";
-			
 		}
 		
 		if(nowPage != null) {

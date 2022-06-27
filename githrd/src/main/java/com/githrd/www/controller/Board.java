@@ -83,14 +83,18 @@ public class Board {
 	@RequestMapping("/boardWriteProc.blp")
 	public ModelAndView boardWriteProc(ModelAndView mv, BoardVO bVO, String nowPage) {
 		String view = "/www/board/boardList.blp";
+//		System.out.println("*********** : " + bVO.getMno());
 		try {
 			bSrvc.addBoardData(bVO);
+			// 정상적으로 글등록 작업에 성공한 경우
+			bVO.setResult("OK");
 			nowPage = "1";
 		} catch(Exception e) {
 			// 게시글 등록에 실패한 경우
 			// 결과적으로 롤백된 경우
 //			view = "/www/board/boardWrite.blp?nowPage=" + nowPage;
 			view = "/www/board/boardWrite.blp";
+			bVO.setResult("NO");
 		}
 		mv.addObject("NOWPAGE", nowPage);
 		mv.setViewName("board/redirect");
@@ -155,10 +159,15 @@ public class Board {
 		String view = "/www/board/boardList.blp";
 		if(cnt != 1) {
 			view = "/www/board/boardDetail.blp";
+			bVO.setResult("NO");
 		}
+		
+		bVO.setResult("OK");
+		
 		mv.addObject("VIEW", view);
 		mv.addObject("NOWPAGE", nowPage);
 		mv.setViewName("board/redirect");
+
 		return mv;
 	}
 }

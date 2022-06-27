@@ -29,7 +29,7 @@
 		                        board, fileinfo
 		                    WHERE
 		                        bno = fbno(+)
-		                        AND fileinfo.isshow = 'Y'
+		                        AND fileinfo.isshow(+) = 'Y'
 		                    GROUP BY
 		                        bno
 		                )
@@ -56,6 +56,15 @@
 		    AND b.isshow = 'Y'
 		    AND bno = #{bno}
 	</select>
+	<!-- 회원아이디로 회원번호 조회 질의명령 -->
+	<select id="selMno" resultType="int" parameterType="string">
+	SELECT
+		mno
+	FROM
+		member
+	WHERE
+		id = #{id}
+	</select>
 	
 	<!-- 글번호로 첨부파일 리스트 조회 질의명령 -->
 	<select id="fileList" resultType="fVO" parameterType="int">
@@ -78,7 +87,7 @@
 		INSERT INTO
 		    board(bno, bmno, title, body)
 		VALUES(
-		    #{bno}, (SELECT mno FROM member WHERE id = #{id}), #{title}, #{body}
+		    #{bno}, #{mno}, #{title}, #{body}
 		)	
 	</insert>
 	
