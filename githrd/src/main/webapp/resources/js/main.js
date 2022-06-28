@@ -67,6 +67,8 @@ $(document).ready(function() {
 		$(location).attr('href', '/www/board/boardList.blp');
 	});
 	
-	
+	$('#emp').click(function(){
+		$(location).attr('href', '/www/emp/empPage.blp');
+	});
 	
 });

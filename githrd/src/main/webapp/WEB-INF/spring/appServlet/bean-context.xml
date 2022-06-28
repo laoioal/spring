@@ -20,6 +20,8 @@
 	<bean id="sDao" class="com.githrd.www.dao.SurveyDao"/>
 	
 	<bean id="bDao" class="com.githrd.www.dao.BoardDao"/>
+	
+	<bean id="eDao" class="com.githrd.www.dao.EmpDao"/>
 
 	<bean id="page" class="com.githrd.www.util.PageUtil" />
 	

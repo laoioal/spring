@@ -1,0 +1,23 @@
+-- system 계정에서 
+GRANT SELECT ANY TABLE TO jennie
+;
+
+
+
+- jennie 계정에서
+CREATE TABLE dept
+AS
+    SELECT * FROM scott.dept
+;
+CREATE TABLE emp
+AS
+    SELECT * FROM scott.emp
+;
+CREATE TABLE salgrade
+AS
+    SELECT * FROM scott.salgrade
+;
+CREATE TABLE bonus
+AS
+    SELECT * FROM scott.bonus
+;

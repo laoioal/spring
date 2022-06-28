@@ -276,75 +276,27 @@
 컨트롤러	:	com.githrd.www.controller.Board
 처리함수	:	boardDel()
 뷰			:	/WEB-INF/views/board/boardList.jsp
-
-
-
-
-
--- 자습
-####방명록 관련 요청설계
+================================================================================
+################ 파일계시판 요청 설계 #########################################
+================================================================================
+# 사원페이지 폼보기 요청
+요청내용	:	/www/emp/empPage.blp
+파라미터	:	x
+컨트롤러	:	com.githrd.www.controller.Emp
+처리함수	:	empPage()
+뷰			:	/WEB-INF/views/emp/empPage.jsp
 --------------------------------------------------------------------------------
-# 방명록 리스트 보기 요청
-요청내용	:	/www/gboard/gboardList.blp
-파라미터	:	무
-컨트롤러	:	com.githrd.www.controller.gBoard
-처리함수	:	gBoardList()
-뷰			:	/WEB-INF/views/guestBoard/gBoardList.jsp
+# 사원페이지 분류리스트조회 비동기 요청
+요청내용	:	/www/emp/selList.blp
+파라미터	:	sel
+컨트롤러	:	com.githrd.www.controller.Emp
+처리함수	:	selList()
+뷰			:	json : ArrayList<EmpVO> ==> Array<JSON>
 --------------------------------------------------------------------------------
-# 방명록 작성 폼보기 요청
-요청내용	:	/www/gboard/gboardForm.blp
-파라미터	:	mno, avatar
-컨트롤러	:	com.githrd.www.controller.gBoard
-처리함수	:	gBoardForm()
-뷰			:	/WEB-INF/views/guestBoard/gBoardWrite.jsp
+# 사원페이지 분류별 사원 리스트조회 비동기 요청
+요청내용	:	/www/emp/partList.blp
+파라미터	:	job || dno
+컨트롤러	:	com.githrd.www.controller.Emp
+처리함수	:	partList()
+뷰			:	json : ArrayList<EmpVO> ==> Array<JSON>
 --------------------------------------------------------------------------------
-# 방명록 작성 처리요청 요청
-요청내용	:	/www/gboard/gboardProc.blp
-파라미터	:	mno, body, nowPage
-컨트롤러	:	com.githrd.www.controller.gBoard
-처리함수	:	gBoardPrco()
-뷰			:	redirect ]
-					성공 : /www/gBoard/gBoardList.blp
-					실패 : /www/gboard/gboardForm.blp
---------------------------------------------------------------------------------
-
-###댓글게시판 관련 요청설계
---------------------------------------------------------------------------------
-# 댓글게시판 리스트 보기 요청
-요청내용	:	/www/reboard/reboardList.blp
-파라미터	:	무
-컨트롤러	:	com.githrd.www.controller.ReBoard
-처리함수	:	ReBoardList()
-뷰			:	/WEB-INF/views/reboard/reboardList.jsp
---------------------------------------------------------------------------------
-# 댓글게시판 댓글작성 폼보기 요청
-요청내용	:	/www/reboard/reboardWrite.blp
-파라미터	:	무
-컨트롤러	:	com.githrd.www.controller.ReBoard
-처리함수	:	ReBoardWrite()
-뷰			:	/WEB-INF/views/reboard/reboardWrite.jsp
---------------------------------------------------------------------------------
-# 댓글게시판 글등록 처리요청
-요청내용	:	/www/reboard/reboardWriteProc.blp
-파라미터	:	무
-컨트롤러	:	com.githrd.www.controller.ReBoard
-처리함수	:	ReBoardWriteProc()
-뷰			:	redirect ]
-						성공 : /www/gBoard/gBoardList.blp
-						실패 : /WEB-INF/views/reboard/reboardWrite.jsp
---------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
