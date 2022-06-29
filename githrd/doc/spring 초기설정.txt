@@ -66,4 +66,9 @@ schemaLocation : 태그 하위에 어떤 태그가 들어가야하는지 정의 
 	https://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 등록
 
-
+=================================순서
+1. pom.xml
+2. servlet-context.xml
+3. root-context.xml
+	-> mybatis ....
+4. bean

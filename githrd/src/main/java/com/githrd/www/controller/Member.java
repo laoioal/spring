@@ -429,5 +429,13 @@ public class Member {
 		return mv;
 	}
 	
-
+	
+	
+	
+	// 로그인 테스트 창 보기
+	@RequestMapping("loginTest.blp")
+	public ModelAndView loginTest(ModelAndView mv) {
+		
+		return mv;
+	}
 }
