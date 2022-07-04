@@ -45,19 +45,20 @@
 				<div class="w3-half">
 					<select class="w3-col w3-select w3-border" id="gselect">
 						<option disabled selected>:::가수 선택:::</option>
-						<option value="S">솔로</option>
 					</select>
 				</div>
 				<div class="w3-half" style="padding-left: 5px;">
 					<select class="w3-col w3-select w3-border" id="mselect">
 						<option disabled selected>:::멤버 선택:::</option>
-						<option value="S">솔로</option>
 					</select>
 				</div>
 			</div>
 		</div>
-		<div class="w3-col w3-center w3-margin-bottom">
+		<div class="w3-col w3-center w3-margin-top w3-margin-bottom" id="photoBox">
 			<!-- 가수 사진 출력 -->
+			<div class="inblock imgBox230 w3-border w3-card-4">
+				<img class="infoAvtBox" src="/www/img/avatar/noimage.jpg">
+			</div>
 		</div>
 	</div>
 </body>

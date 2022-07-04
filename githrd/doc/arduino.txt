@@ -1,0 +1,28 @@
+CREATE TABLE ardudata(
+    ano NUMBER(4)
+        CONSTRAINT ARDU_NO_PK PRIMARY KEY,
+    ddata NUMBER(7, 4)
+        CONSTRAINT ARDU_DATA_NN NOT NULL,
+    wdate DATE DEFAULT sysdate
+        CONSTRAINT ARDU_DATE_NN NOT NULL
+);
+
+INSERT INTO
+    ardudata(ano, ddata)
+VALUES(
+    (SELECT NVL(MAX(ano) + 1, 1001) FROM ardudata),
+    150.00
+);
+		SELECT
+			ano, ddata, wdate
+		FROM
+			(
+				SELECT
+					ano, ddata, wdate
+				FROM
+					ardudata
+				ORDER BY
+					wdate DESC
+			)
+		WHERE
+			rownum BETWEEN 1 and 5
