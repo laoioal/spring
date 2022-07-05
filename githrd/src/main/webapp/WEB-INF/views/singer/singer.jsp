@@ -28,8 +28,8 @@
 				<div class="w3-third" style="padding-left: 5px;">
 					<select class="w3-col w3-select w3-border" id="gen">
 						<option disabled selected>:::성별 선택:::</option>
-						<option value="남자" class="w3-text-blue"><span class="fa fa-male"></span>남자</option>
-						<option value="여자" class="w3-text-pink"><span class="fa fa-person-dress"></span>여자</option>
+						<option value="남자" class="w3-text-blue">남자</option>
+						<option value="여자" class="w3-text-pink">여자</option>
 					</select>
 				</div>
 				<div class="w3-third" style="padding-left: 5px;">
