@@ -1,13 +1,25 @@
 package com.githrd.www.vo;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 public class ArduVO {
-	private int ano, rno, cnt, nowPage, startCont, endCont;
-	private double ddata;
+	private int ano, rno, cnt, nowPage, startCont, endCont, hum;
+	private double ddata, tmp;
 	private String sdate;
 	private Date wdate;
+	public int getHum() {
+		return hum;
+	}
+	public void setHum(int hum) {
+		this.hum = hum;
+	}
+	public double getTmp() {
+		return tmp;
+	}
+	public void setTmp(double tmp) {
+		this.tmp = tmp;
+	}
 	public int getAno() {
 		return ano;
 	}
@@ -53,26 +65,19 @@ public class ArduVO {
 	public String getSdate() {
 		return sdate;
 	}
-	public void setSdate(String sdate) {
-		this.sdate = sdate;
-		setSdate();
-	}
 	public void setSdate() {
 		SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		sdate = form.format(wdate);
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
 	}
 	public Date getWdate() {
 		return wdate;
 	}
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
+		setSdate();
 	}
-	@Override
-	public String toString() {
-		return "ArduVO [ano=" + ano + ", rno=" + rno + ", cnt=" + cnt + ", nowPage=" + nowPage + ", startCont="
-				+ startCont + ", endCont=" + endCont + ", ddata=" + ddata + ", sdate=" + sdate + ", wdate=" + wdate
-				+ "]";
-	}
-	
 	
 }

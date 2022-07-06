@@ -1,36 +1,37 @@
 package com.githrd.www.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.githrd.www.dao.ArduDao;
-import com.githrd.www.vo.ArduVO;
+import com.githrd.www.dao.*;
+import com.githrd.www.vo.*;
 
 @Controller
 @RequestMapping("/arduino")
 public class Arduino {
-	
 	@Autowired
 	ArduDao aDao;
 	
 	// 데이터 추가 요청 처리함수
 	@RequestMapping("/addData.blp")
 	@ResponseBody
-	public Map<String, String> addData(ArduVO aVO) {
+	public Map<String, String> addData(ArduVO aVO){
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		int cnt = aDao.addData(aVO);
+		
 		String result = "OK";
 		if(cnt != 1) {
 			result = "NO";
 		}
+		
 		map.put("result", result);
+		
 		return map;
 	}
 	
@@ -41,7 +42,46 @@ public class Arduino {
 		
 		// 데이터 심고
 		mv.addObject("LIST", list);
+		
 		mv.setViewName("arduino/topFive");
 		return mv;
+	}
+	
+	@RequestMapping("/addCount.blp")
+	@ResponseBody
+	public Map<String, String> addCount(){
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+//		String sdate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+//		int cnt = aDao.addCount(sdate);
+		
+		int cnt = aDao.addCount();
+		
+		String result = "OK";
+		
+		if(cnt != 1) {
+			result = "NO";
+		}
+		
+		map.put("result", result);
+		
+		return map;
+	}
+	
+	// 온습도 측정데이터 추가 요청 전담 처리함수
+	@RequestMapping("/addTemp.blp")
+	@ResponseBody
+	public Map<String, String> addDHT(ArduVO aVO){
+		Map<String, String> map = new HashMap<String, String>();
+		String result = "Success";
+		
+		int cnt = aDao.addDHT(aVO);
+		
+		if(cnt != 1) {
+			result = "Fail";
+		}
+		
+		map.put("result", result);
+		return map;
 	}
 }

@@ -17,6 +17,7 @@
 		<typeAlias alias="fVO" type="com.githrd.www.vo.FileVO"/>
 		<typeAlias alias="sVO" type="com.githrd.www.vo.SurveyVO"/>
 		<typeAlias alias="eVO" type="com.githrd.www.vo.EmpVO"/>
+		<typeAlias alias="pVO" type="com.githrd.www.vo.ProductVO"/>
 		<typeAlias alias="songVO" type="com.githrd.www.vo.SingerVO"/>
 		<typeAlias alias="page" type="com.githrd.www.util.PageUtil"/>
 	</typeAliases>
@@ -30,6 +31,7 @@
 		<mapper resource="com/githrd/www/sql/BoardSQL.xml"/>
 		<mapper resource="com/githrd/www/sql/SingerSQL.xml"/>
 		<mapper resource="com/githrd/www/sql/EmpSQL.xml"/>
+		<mapper resource="com/githrd/www/sql/ProductSQL.xml"/>
 	</mappers>
 	
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pSQL">
+	<!-- 대 카테고리 리스트 조회 질의명령 -->
+	<select id="startCate" resultType="pVO" parameterType="pVO">
+		SELECT
+		    cno, cate_name cname
+		FROM
+		    category
+		WHERE
+		
+			<if test="cno eq 0">
+		    	upno IS NULL
+		    </if>
+			<if test="cno neq 0">
+		    	upno = #{cno}
+		    </if>
+	</select>
+	
+	<!-- 카네고리 리스트 조회 질의명령 -->
+	<select id="cateList" resultType="pVO" parameterType="pVO">
+		SELECT
+		    cno, cate_name cname
+		FROM
+		    category
+		WHERE
+			<if test="cno eq 0">
+		    	upno IS NULL
+		    </if>
+			<if test="cno neq 0">
+		    	upno = #{cno}
+		    </if>
+	</select>
+</mapper>

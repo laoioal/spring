@@ -24,6 +24,8 @@
 	<bean id="eDao" class="com.githrd.www.dao.EmpDao"/>
 	
 	<bean id="songDao" class="com.githrd.www.dao.SingerDao"/>
+	
+	<bean id="pDao" class="com.githrd.www.dao.ProductDao"/>
 
 	<bean id="page" class="com.githrd.www.util.PageUtil" />
 	

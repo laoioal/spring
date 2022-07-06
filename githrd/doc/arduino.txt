@@ -26,3 +26,22 @@ VALUES(
 			)
 		WHERE
 			rownum BETWEEN 1 and 5
+			
+==================================================================================================
+CREATE TABLE dailyTemp
+    no NUMBER
+        CONSTRAINT DTMP_NO_PK PRIMARY KEY,
+    tmp NUMBER(7,2)
+        CONSTRAINT DTMP_TMP_NN NOT NULL,
+    hum NUMBER(3)
+        CONSTRAINT DTMP_HUM_NN NOT NULL,
+    mdate DATE DEFAULT sysdate
+        CONSTRAINT DTMP_DATE_NN NOT NULL
+);
+
+INSERT INTO
+    dailytemp(no, tmp, hum)
+VALUES(
+    (SELECT NVL(MAX(no) + 1, 1) FROM dailytemp),
+    #{tmp}, #{hum}
+);

@@ -27,4 +27,23 @@
 		WHERE
 			rownum BETWEEN 1 and 5
 	</select>
+	
+	<update id="addCnt" >
+		UPDATE
+			arducount
+		SET
+			count = count + 1
+		WHERE
+			TO_CHAR(CDATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD')
+	</update>
+	
+	<!-- 온습도 측정 데이터 추가 질의명령 -->
+	<insert id="addTmpHum" parameterType="aVO">
+		INSERT INTO
+		    dailytemp(no, tmp, hum)
+		VALUES(
+		    (SELECT NVL(MAX(no) + 1, 1) FROM dailytemp),
+		    #{tmp}, #{hum}
+		)
+	</insert>
 </mapper>
