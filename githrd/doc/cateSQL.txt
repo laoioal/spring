@@ -1,0 +1,86 @@
+
+CREATE TABLE char_Cate(
+    cno NUMBER(6)
+        CONSTRAINT CATE_NO_PK PRIMARY KEY,
+    cate_name VARCHAR2(30 CHAR)
+        CONSTRAINT CATE_NAME_NN NOT NULL,
+    cate VARCHAR2(4000)
+        CONSTRAINT CATE_CATE_NN NOT NULL
+);
+
+INSERT INTO
+    char_cate
+VALUES(
+    (SELECT NVL(MAX(cno) + 1, 100001) FROM char_cate), '가전/TV', '#'
+    
+);
+INSERT INTO
+    char_cate
+VALUES(
+    (SELECT NVL(MAX(cno) + 1, 100001) FROM char_cate), 'TV', '#100001#'
+    
+);
+INSERT INTO
+    char_cate
+VALUES(
+    (SELECT NVL(MAX(cno) + 1, 100001) FROM char_cate), '80인치이상', '#100001#100002#'
+    
+);
+INSERT INTO
+    char_cate
+VALUES(
+    (SELECT NVL(MAX(cno) + 1, 100001) FROM char_cate), '90인치이상', '#100001#100002#100003#'
+    
+);
+INSERT INTO
+    char_cate
+VALUES(
+    (SELECT NVL(MAX(cno) + 1, 100001) FROM char_cate), '86/88인치', '#100001#100002#100003#'
+    
+);
+INSERT INTO
+    char_cate
+VALUES(
+    (SELECT NVL(MAX(cno) + 1, 100001) FROM char_cate), '85인치', '#100001#100002#100003#'
+    
+);
+INSERT INTO
+    char_cate
+VALUES(
+    (SELECT NVL(MAX(cno) + 1, 100001) FROM char_cate), '82/83인치', '#100001#100002#100003#'
+    
+);
+commit;
+
+-- 세부항목 카테고리 조회 질의명령
+SELECT
+    cno, cate_name cname, cate
+FROM
+    char_cate
+WHERE
+    cate = (
+            SELECT
+                cate || 100003 || '#'
+            FROM
+                char_cate
+            WHERE
+                cno = 100003
+            );
+            
+-- 대 카테고리 조회 질의명령
+SELECT
+    cno, cate_name cname, cate
+FROM
+    char_cate
+WHERE
+    cate = '#'
+    
+-- 테이블 데이터 복사 명령
+INSERT INTO
+    charcate
+    
+    SELECT
+        *
+    FROM
+        char_cate
+    ;
