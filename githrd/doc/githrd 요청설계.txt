@@ -361,8 +361,22 @@
 --------------------------------------------------------------------------------
 # 카테고리 리스트 조회 요청
 요청내용	:	/www/cate/cateList.blp
-파라미터	:	x
+파라미터	:	upno
 컨트롤러	:	com.githrd.www.controller.Product
 처리함수	:	cateList()
 뷰			:	json[{"cno" : ????, "cname" : ????}, {"cno" : ????, "cname" : ????}...]
+--------------------------------------------------------------------------------
+# 상품 리스트 조회 요청
+요청내용	:	/www/cate/productList.blp
+파라미터	:	cno
+컨트롤러	:	com.githrd.www.controller.Product
+처리함수	:	productList()
+뷰			:	json
+--------------------------------------------------------------------------------
+# 상품 상세보기 조회 요청
+요청내용	:	/www/cate/productDetail.blp
+파라미터	:	pno
+컨트롤러	:	com.githrd.www.controller.Product
+처리함수	:	productDetail()
+뷰			:	/WEB-INF/views/cate/productDetail.jsp
 --------------------------------------------------------------------------------

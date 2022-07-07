@@ -33,4 +33,28 @@
 		    	upno = #{cno}
 		    </if>
 	</select>
+	
+	<!-- 제품리스트 조회 질의명령 -->
+	<select id="pList" resultType="pVO" parameterType="pVO">
+		SELECT
+		    pno, pname, savename sname, price, manuf_co, dir, summary, reldate
+		FROM
+		    product, fileinfo
+		WHERE
+		    pno = fbno
+		    AND dir = '/www/img/product/'
+		    AND cno = #{cno}
+	</select>
+	
+	<!-- 제품상세 조회 질의명령 -->
+	<select id="pDetail" resultType="pVO" parameterType="pVO">
+		SELECT
+		    pno, pname, savename sname, price, manuf_co, dir, summary, reldate sdate
+		FROM
+		    product, fileinfo
+		WHERE
+		    pno = fbno
+		    AND dir = '/www/img/product/'
+		    AND pno = #{pno}
+	</select>
 </mapper>

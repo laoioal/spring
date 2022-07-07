@@ -32,6 +32,21 @@ public class Product {
 		List<ProductVO> list = pDao.getCateList(pVO);
 		
 		return list;
-		
+	}
+	
+	// 상품리스트 요청 전담 처리함수
+	@RequestMapping("/productList.blp")
+	@ResponseBody
+	public List<ProductVO> productList(ProductVO pVO) {
+		return pDao.getProductList(pVO);
+	}
+	
+	// 상품 상세페이지 요청
+	@RequestMapping("/productDetail.blp")
+	public ModelAndView productDetail(ModelAndView mv, ProductVO pVO) {
+		ProductVO list = pDao.getProductDetail(pVO);
+		mv.addObject("LIST", list);
+		mv.setViewName("cate/productDetail");
+		return mv;
 	}
 }
