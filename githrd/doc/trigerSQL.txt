@@ -1,0 +1,183 @@
+CREATE TABLE MEMBER_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        member m
+    WHERE
+        1 = 2
+    ;
+
+alter table member_back
+MODIFY backup_date
+    CONSTRAINT MEMBBACK_BDATE_NN NOT NULL;
+    
+-- 제약조건 비활성화
+ALTER TABLE guestboard
+DISABLE CONSTRAINT GBRD_WRITER_FK;
+ALTER TABLE board
+DISABLE CONSTRAINT BRD_MNO_FK;
+ALTER TABLE survey
+DISABLE CONSTRAINT SV_MNO_FK;
+
+-- 제약조건 활성화
+ALTER TABLE survey
+ENABLE CONSTRAINT SV_MNO_FK;
+
+alter table member_back
+MODIFY backup_date
+    CONSTRAINT MEMBBACK_BDATE_NN NOT NULL;
+    
+CREATE TABLE SURVEY_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        survey m
+    WHERE
+        1 = 2
+    ;
+    
+CREATE TABLE BOARD_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        board m
+    WHERE
+        1 = 2
+    ;
+CREATE TABLE REBOARD_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        reboard m
+    WHERE
+        1 = 2
+    ;    
+CREATE TABLE guestboard_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        guestboard m
+    WHERE
+        1 = 2
+    ;
+alter table member_back
+MODIFY backup_date
+    CONSTRAINT MEMBBACK_BDATE_NN NOT NULL;
+    
+alter table survey_back
+MODIFY backup_date
+    CONSTRAINT SBBACK_BDATE_NN NOT NULL;
+    
+alter table board_back
+MODIFY backup_date
+    CONSTRAINT BRDBACK_BDATE_NN NOT NULL;
+    
+alter table guestboard_back
+MODIFY backup_date
+    CONSTRAINT GBRDBACK_BDATE_NN NOT NULL;
+
+ALTER TABLE reboard_back
+MODIFY backup_date
+    CONSTRAINT RBRDBACK_BDATE_NN NOT NULL;
+    
+    
+-- 삭제 질의명령
+
+-- member
+DELETE FROM member
+WHERE
+    mno = #{mno}
+;
+
+-- board
+DELETE FROM board
+WHERE
+    bno IN (
+            SELECT
+                bno
+            FROM
+                board
+            WHERE
+                bmno = #{mno}
+            )
+;
+--guestboard
+DELETE FROM guestboard
+WHERE
+    gno = (
+            SELECT
+                gno
+            FROM
+                guestboard
+            WHERE
+                writer = #{mno}
+    )
+;
+
+--reboard
+DELETE FROM reboard
+WHERE
+    rbno IN (
+                SELECT
+                    distinct rbno
+                FROM
+                    reboard
+                WHERE
+                    isshow = 'Y'
+                START WITH
+                    rbmno = #{mno}
+                CONNECT BY
+                    PRIOR rbno = upno
+            
+    )
+;
+/*
+SELECT
+    lpad('-', level, '-') || rbno, rbmno mno, level, body
+FROM
+    reboard
+WHERE
+    isshow = 'Y'
+START WITH
+    --rbno = 100001
+    rbmno = 1001
+CONNECT BY
+    PRIOR rbno = upno
+;
+
+
+SELECT
+    distinct rbno
+FROM
+    reboard
+WHERE
+    isshow = 'Y'
+START WITH
+    rbmno = 1001
+CONNECT BY
+    PRIOR rbno = upno
+*/
+
+--survey
+-- 제약조건 수정
+ALTER TABLE survey
+DROP CONSTRAINT SV_MNO_FK;
+
+ALTER TABLE survey
+MODIFY smno CONSTRAINT
+    SV_MNO_FK FOREIGN KEY(smno) REFERENCES member(mno)
+;
+    
+update survey
+set
+    smno = null
+where
+    smno = 1014
+    ;
+
+DELETE FROM MEMBER WHERE meno = 
