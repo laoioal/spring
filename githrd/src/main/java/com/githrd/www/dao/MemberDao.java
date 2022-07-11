@@ -70,5 +70,31 @@ public class MemberDao {
 	public int editMyInfo(MemberVO mVO) {
 		return sqlSession.update("mSQL.editInfo", mVO);
 	}
+	
+//-----------------------------------------------------------------------------------
+	// 회원 아이디 리스트 조회 전담 처리함수
+	public List<String> idList() {
+		return sqlSession.selectList("mSQL.memberIdList");
+	}
+	
+	// 게시글 백업 전담 처리함수
+	public int backupBoard(MemberVO mVO) {
+		return sqlSession.insert("dSQL.backupBrd", mVO);
+	}
+	
+	// 댓글게시판 게시글 백업 전담 처리함수
+	public int backupReBoard(MemberVO mVO) {
+		return sqlSession.insert("dSQL.backupRbrd", mVO);
+	}
+	
+	// 회원정보 백업 전담 처리함수
+	public int backupMember(String id) {
+		return sqlSession.insert("dSQL.backupMemb", id);
+	}
+	
+	// 회원정보 삭제 전담 처리함수
+	public int delMemb(String id) {
+		return sqlSession.delete("dSQL.delmember", id);
+	}
 
 }

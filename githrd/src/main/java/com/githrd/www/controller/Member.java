@@ -12,6 +12,7 @@ import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.view.*;
 
 import com.githrd.www.dao.*;
+import com.githrd.www.service.DeleteMember;
 import com.githrd.www.vo.*;
 
 @Controller
@@ -26,6 +27,9 @@ public class Member {
 	
 	@Autowired
 	GBoardDao gDao;
+	
+	@Autowired
+	DeleteMember dMemb;
 	
 	@RequestMapping("/login.blp")
 	public ModelAndView loginForm(ModelAndView mv, HttpSession session) {	
@@ -124,7 +128,7 @@ public class Member {
 		int cnt = mDao.getLogin(mVO);
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
-			rv.setUrl("/www/main.blp");
+			rv.setUrl("/www/admin/adminPage.blp");
 		} else {
 			rv.setUrl("/www/member/login.blp");
 		}

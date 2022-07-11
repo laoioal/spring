@@ -1,0 +1,17 @@
+구글-python-downloads
+
+https://www.python.org/downloads/release/python-380/
+Windows x86-64 executable installer 다운
+
+-- 설치
+add python 3.8 to path 체크
+
+-- 설치확인
+cmd
+python -V
+
+
+아두이노 라이브러리
+cytron wifi
+
+arduinoJson

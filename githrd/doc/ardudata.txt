@@ -1,0 +1,25 @@
+{"response":{
+				"body":
+						{
+							"totalCount":23,
+							"items":
+							[
+								{"so2Grade":"1","coFlag":null,"khaiValue":"61","so2Value":"0.003","coValue":"0.4","pm25Flag":null,"pm10Flag":null,"pm10Value":"27","o3Grade":"2","khaiGrade":"2","pm25Value":"15","no2Flag":null,"no2Grade":"1","o3Flag":null,"pm25Grade":"1","so2Flag":null,"dataTime":"2022-07-11 11:00","coGrade":"1","no2Value":"0.016","pm10Grade":"1","o3Value":"0.043"}
+							],
+								"pageNo":1,
+								"numOfRows":1
+						},
+						
+						"header":
+						{
+						"resultMsg":"NORMAL_CODE","resultCode":"00"
+						}
+		}
+	}
+	
+	
+String line ==> jsnoObject
+
+초미세먼지 농도 꺼내오기
+data.response.body.items[0].pm25Value --> 자바스크립트 방식으로 꺼내오기
+data["response"]["body"]["items"][0]["pm24Value"]

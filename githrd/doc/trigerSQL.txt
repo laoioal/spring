@@ -180,4 +180,126 @@ where
     smno = 1014
     ;
 
-DELETE FROM MEMBER WHERE meno = 
+-------------------------------------------
+수업시간에 다시 한거
+CREATE TABLE MEMBER_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        member m
+    WHERE
+        1 = 2
+;
+
+CREATE TABLE SURVEY_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        survey m
+    WHERE
+        1 = 2
+;
+
+CREATE TABLE BOARD_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        board m
+    WHERE
+        1 = 2
+;
+
+CREATE TABLE REBOARD_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        reboard m
+    WHERE
+        1 = 2
+;
+
+CREATE TABLE GUESTBOARD_BACK
+AS
+    SELECT
+        m.*, sysdate backup_date
+    FROM
+        guestboard m
+    WHERE
+        1 = 2
+;
+
+ALTER TABLE member_back
+MODIFY backup_date
+    CONSTRAINT MEMBBACK_BDATE_NN NOT NULL;
+
+ALTER TABLE surbey_back
+MODIFY backup_date
+    CONSTRAINT SVBACK_BDATE_NN NOT NULL;
+
+ALTER TABLE board_back
+MODIFY backup_date
+    CONSTRAINT BRDBACK_BDATE_NN NOT NULL;
+
+ALTER TABLE guestboard_back
+MODIFY backup_date
+    CONSTRAINT GBRDBACK_BDATE_NN NOT NULL;
+
+ALTER TABLE reboard_back
+MODIFY backup_date
+    CONSTRAINT RBRDBACK_BDATE_NN NOT NULL;
+
+-- 게시판
+ALTER TABLE board
+DROP CONSTRAINT  BRD_MNO_FK;
+
+ALTER TABLE board
+ADD CONSTRAINT BRD_MNO_FK FOREIGN KEY(bmno) REFERENCES member(mno)
+ON DELETE CASCADE;
+
+ALTER TABLE fileinfo
+DROP CONSTRAINT FI_BNO_FK;
+
+-- 방명록
+ALTER TABLE guestboard
+DROP CONSTRAINT GUESTBOARD_WIRTER_FK;
+
+-- 댓글 게시판
+ALTER TABLE reboard
+DROP CONSTRAINT  RBRD_MNO_FK;
+
+ALTER TABLE reboard
+ADD CONSTRAINT RBRD_MNO_FK FOREIGN KEY(rbmno) REFERENCES member(mno)
+ON DELETE CASCADE;
+
+-- 설문조사
+ALTER TABLE survey
+DROP CONSTRAINT SV_MNO_FK;
+
+ALTER TABLE survey
+DROP CONSTRAINT SV_MNO_NN;
+
+
+INSERT INTO
+    member(mno, name, id, pw, mail, tel, avt, gen)
+VALUES(
+    (SELECT NVL(MAX(mno) + 1 , 1001) FROM member),
+    'test1', 'test1', '12345', 'test1@githrd.com', '010-7772-2222', 13, 'M'
+);
+
+INSERT INTO
+    board(bno, bmno, title, body)
+VALUES(
+    (SELECT NVL(MAX(bno) + 1, 100001) FROM board),
+    1011, '삭제테스트', '회원삭제시 게시글 삭제 테스트'
+);
+commit;
+
+INSERT INTO
+    member(mno, id, pw, name, mail, tel, gen)
+VALUES(
+    1, 'admin', '12345', '관리자', 'admin@githrd.com', '010-0987-9876', 'F'
+);

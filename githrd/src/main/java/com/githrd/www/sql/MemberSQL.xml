@@ -214,6 +214,16 @@
 			id = #{id}
 	</update>
 	
+	<!-- 회원 아이디 리스트 조회 질의명령 -->
+	<select id="memberIdList" resultType="string">
+		SELECT
+			id
+		FROM
+			member
+		WHERE
+			isshow = 'Y'
+	</select>
+	
 	<!-- 회원 리스트 조회 질의명령 -->
 	<select id="memberList" resultType="mVO">
 		SELECT
