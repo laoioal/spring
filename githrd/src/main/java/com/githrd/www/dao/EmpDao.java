@@ -35,4 +35,9 @@ public class EmpDao {
 	public List<EmpVO> nameList(EmpVO eVO) {
 		return sqlSession.selectList("eSQL.nameList", eVO);
 	}
+	
+	// smith 사원 급여 인상 전담 처리함수
+	public int upSal() {
+		return sqlSession.update("eSQL.upSal");
+	}
 }

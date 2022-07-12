@@ -72,3 +72,9 @@ schemaLocation : 태그 하위에 어떤 태그가 들어가야하는지 정의 
 3. root-context.xml
 	-> mybatis ....
 4. bean
+
+
+
+=========================
+qiartz 설정
+1. pom.xml
