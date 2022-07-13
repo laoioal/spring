@@ -6,9 +6,27 @@ Windows x86-64 executable installer 다운
 -- 설치
 add python 3.8 to path 체크
 
+
+https://www.python.org/downloads/windows/
+Note that Python 3.8.10 cannot be used on Windows XP or earlier.
+Download Windows installer (64-bit)로 변경
+
 -- 설치확인
 cmd
 python -V
+
+
+파이참 설치
+왼쪽 다 체크
+
+
+
+
+
+
+
+
+
 
 
 아두이노 라이브러리
