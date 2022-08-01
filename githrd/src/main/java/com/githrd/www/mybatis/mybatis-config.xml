@@ -33,6 +33,10 @@
 		<mapper resource="com/githrd/www/sql/EmpSQL.xml"/>
 		<mapper resource="com/githrd/www/sql/ProductSQL.xml"/>
 		<mapper resource="com/githrd/www/sql/DelSQL.xml"/>
+		<mapper resource="com/githrd/www/sql/ResultMapMember.xml"/>
+		
+		
+		<mapper resource="com/githrd/www/sql/ResultMapMember.xml"/>
 	</mappers>
 	
 

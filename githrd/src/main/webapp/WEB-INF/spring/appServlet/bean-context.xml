@@ -23,6 +23,8 @@
 	
 	<bean id="eDao" class="com.githrd.www.dao.EmpDao"/>
 	
+	<bean id="teDao" class="com.githrd.www.dao.MapTest"/>
+	
 	<bean id="songDao" class="com.githrd.www.dao.SingerDao"/>
 	
 	<bean id="pDao" class="com.githrd.www.dao.ProductDao"/>

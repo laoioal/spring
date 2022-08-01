@@ -26,6 +26,9 @@ public class Member {
 	MemberDao mDao;
 	
 	@Autowired
+	MapTest teDao;
+	
+	@Autowired
 	GBoardDao gDao;
 	
 	@Autowired
@@ -442,4 +445,18 @@ public class Member {
 		
 		return mv;
 	}
+	
+	
+	
+	@RequestMapping("/test.blp")
+	public ModelAndView testpage(ModelAndView mv) {
+	//	List<Map<String, String>> list = teDao.getData("jennie");
+	//	System.out.println(teDao.getData("jennie"));
+		List<Map<String, String>> list = mDao.getDate("jennie");
+		System.out.println(mDao.getDate("jennie"));
+		mv.addObject("LIST", list);
+		mv.setViewName("member/memberListMap");
+		return mv;
+	}
+	
 }

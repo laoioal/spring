@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="com.githrd.www.dao.MapTest"> -->
+<mapper namespace="mapSQL">
+
+	<select id="rsmember" resultType="java.util.HashMap" parameterType="string">
+		SELECT
+			id, pw, mno, mail, avt ano
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
+
+</mapper>

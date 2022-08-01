@@ -1,11 +1,13 @@
 package com.githrd.www.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.githrd.www.vo.MemberVO;
+import com.githrd.www.vo.RsmemVO;
 
 public class MemberDao {
 	
@@ -97,4 +99,8 @@ public class MemberDao {
 		return sqlSession.delete("dSQL.delmember", id);
 	}
 
+	
+	public List<Map<String, String>> getDate(String id){
+		return sqlSession.selectList("mapSQL.rsmember", id);
+	}
 }
